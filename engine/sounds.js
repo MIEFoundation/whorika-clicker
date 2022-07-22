@@ -7,7 +7,7 @@ export default class GameSounds {
 	}
 
 	constructor (definitions) {
-		GameSound.validateDefinition(definitions)
+		GameSounds.validateDefinition(definitions)
 		this.audio = {}
 		for (const id in definitions) {
 			const audio = new Audio(definitions[id])
