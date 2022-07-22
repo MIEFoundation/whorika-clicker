@@ -153,9 +153,19 @@ class Game extends EventDispatcher {
 
 		// Upgrades
 		{
+			let cache = this.state.getAvailable()
 			this.upgrades = root.querySelector('#upgrades')
-			this.state.addEventListener('upgradeLevels', () => this.updateUpgrades())
-			this.updateUpgrades()
+			this.state.addEventListener('entropy', () => {
+				if (JSON.stringify(this.state.getAvailable()) !== JSON.stringify(cache)) {
+					cache = this.state.getAvailable()
+					this.updateUpgrades(cache)
+				}
+			})
+			this.state.addEventListener('upgradeLevels', () => {
+				cache = this.state.getAvailable()
+				this.updateUpgrades(cache)
+			})
+			this.updateUpgrades(cache)
 		}
 
 		// Story text
@@ -331,8 +341,7 @@ class Game extends EventDispatcher {
 		return button
 	}
 
-	updateUpgrades() {
-		const upgrades = this.state.getAvailable()
+	updateUpgrades(upgrades) {
 		const { upgradeLevels } = this.state.state
 		// Stage 1. Update
 		for (let i = 0; i < this.upgrades.children.length; i++) {

@@ -31,8 +31,8 @@ export default class StateWrapper extends EventDispatcher {
 			if (stage !== this.state.stage) continue
 			if (condition && !condition(this.state)) continue
 			if (this.state.upgradeLevels[id] === max && !sellable) continue
-			const maxByEntropy = costEntropy ? Math.ceil(this.state.entropy / costEntropy) : Infinity
-			const maxByMl = costMl ? Math.ceil(this.state.ml / costMl) : Infinity
+			const maxByEntropy = costEntropy ? Math.floor(this.state.entropy / costEntropy) : Infinity
+			const maxByMl = costMl ? Math.floor(this.state.ml / costMl) : Infinity
 			available[id] = Math.min(maxByEntropy, maxByMl, max)
 		}
 		return available
