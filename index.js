@@ -39,6 +39,7 @@ class Game extends EventDispatcher {
 				lastClick = ts
 			})
 			root.querySelector('main').addEventListener('click', e => {
+				const ts = performance.now()
 				if (e.path.includes(target) && ts - lastClick < 100) return
 				e.preventDefault()
 				this[EventDispatcher.Dispatch]('miss')
@@ -84,8 +85,8 @@ class Game extends EventDispatcher {
 
 		// Sound
 		{
-			let hitSound = ''
-			let heavySound = ''
+			let hitSound = 'stage_1'
+			let heavySound = 'stage_1h'
 			this.state.addEventListener('stage', (stage) => {
 				if (`stage_${stage}` in Sounds) hitSound = `stage_${stage}`
 				if (`stage_${stage}h` in Sounds) heavySound = `stage_${stage}h`
