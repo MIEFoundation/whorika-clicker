@@ -14,7 +14,7 @@ export default class StateWrapper extends EventDispatcher {
 	updateDamage() {
 		const damage = this.state.currentDamage
 		this.state.entropy += damage
-		this.state.ml += Math.round((Math.random() + 0.5) * this.state.dropChance * damage)
+		this.state.ml += Math.round((Math.random() + 0.5) * this.state.mlDropChance * damage)
 		this.state.totalDamage += damage
 	}
 

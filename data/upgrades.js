@@ -21,7 +21,7 @@ export default {
 		costEntropy: 500,
 		mutate: state => (
 			state.baseDamage = 5,
-			state.dropChance = 0.005,
+			state.mlDropChance = 0.005,
 			state
 		),
 	},
@@ -32,7 +32,7 @@ export default {
 		condition: state => state.upgradeLevels.castet,
 		mutate: state => (
 			state.baseDamage = 8,
-			state.dropChance = 0.01,
+			state.mlDropChance = 0.01,
 			state
 		),
 	},
@@ -43,7 +43,7 @@ export default {
 		condition: state => state.upgradeLevels.bat,
 		mutate: state => (
 			state.baseDamage = 20,
-			state.dropChance = 0.05,
+			state.mlDropChance = 0.05,
 			state
 		),
 	},
@@ -54,7 +54,7 @@ export default {
 		condition: state => state.upgradeLevels.hammer,
 		mutate: state => (
 			state.baseDamage = 30,
-			state.dropChance = 0.1,
+			state.mlDropChance = 0.1,
 			state
 		),
 	},
@@ -77,7 +77,7 @@ export default {
 		condition: state => state.upgradeLevels.analysis,
 		mutate: state => (
 			state.baseDamage = 50,
-			state.dropChance = 0.2,
+			state.mlDropChance = 0.2,
 			state
 		),
 	},
@@ -100,7 +100,7 @@ export default {
 		condition: state => state.upgradeLevels.knife,
 		mutate: state => (
 			state.baseDamage = 80,
-			state.dropChance = 0.4,
+			state.mlDropChance = 0.4,
 			state
 		),
 	},
@@ -130,7 +130,7 @@ export default {
 		condition: state => state.upgradeLevels.larger_knife,
 		mutate: state => (
 			state.baseDamage = 240,
-			state.dropChance = 0.2,
+			state.mlDropChance = 0.2,
 			state
 		),
 	},
@@ -141,7 +141,7 @@ export default {
 		condition: state => state.upgradeLevels.pistol,
 		mutate: state => (
 			state.baseDamage = 500,
-			state.dropChance = 0.4,
+			state.mlDropChance = 0.4,
 			state
 		),
 	},
@@ -172,7 +172,7 @@ export default {
 		condition: state => state.upgradeLevels.smg,
 		mutate: state => (
 			state.baseDamage = 800,
-			state.dropChance = 0.6,
+			state.mlDropChance = 0.6,
 			state
 		),
 	},
@@ -183,7 +183,7 @@ export default {
 		condition: state => state.upgradeLevels.machine_gun,
 		mutate: state => (
 			state.baseDamage = 1_000,
-			state.dropChance = 0.8,
+			state.mlDropChance = 0.8,
 			state
 		),
 	},
@@ -194,7 +194,7 @@ export default {
 		condition: state => state.upgradeLevels.shotgun,
 		mutate: state => (
 			state.baseDamage = 5_000,
-			state.dropChance = 1,
+			state.mlDropChance = 1,
 			state
 		),
 	},
