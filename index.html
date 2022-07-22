@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf8">
+		<title>чМоника Кликер</title>
+		<meta name="author" content="MIE Group">
+		<meta name="description" content="Исследуй. Тестируй. Унижай.">
+		<meta name="viewport" content="width=device-width">
+		<link href="./index.css" rel="stylesheet">
+		<!-- Sounds -->
+		<link rel="preload" as="audio" href="./assets/sounds/crush.ogg" type="audio/ogg">
+		<link rel="preload" as="audio" href="./assets/sounds/impact.ogg" type="audio/ogg">
+		<link rel="preload" as="audio" href="./assets/sounds/miss.ogg" type="audio/ogg">
+		<link rel="preload" as="audio" href="./assets/sounds/punch.ogg" type="audio/ogg">
+		<link rel="preload" as="audio" href="./assets/sounds/slap.ogg" type="audio/ogg">
+		<!-- Sprites (suppose WebP) -->
+		<link rel="preload" as="image" href="./assets/sounds/whipping.ogg" type="image/webp">
+		<link rel="preload" as="image" href="./assets/heads/crying.webp" type="image/webp">
+		<link rel="preload" as="image" href="./assets/heads/distressed.webp" type="image/webp">
+		<link rel="preload" as="image" href="./assets/heads/worried.webp" type="image/webp">
+		<!-- Scripts --->
+		<script src="./index.js" type="module" defer></script>
+		<!-- Cloudflare Web Analytics -->
+		<script
+			src="https://static.cloudflareinsights.com/beacon.min.js"
+			defer
+			data-cf-beacon='{"token": "7d90d31f377d4d94a44fe9cf529dbe1c"}'
+		></script>
+		<!-- End Cloudflare Web Analytics -->
+	</head>
+	<body>
+		<header>
+			<h2 title="Всего нанесено урона">
+				<span data-state="totalDamage">0</span> / ??? ??? ??? ???
+			</h2>
+			<audio autoplay loop controls>
+				<source src="./assets/monika.ogg" type="audio/ogg">
+			</audio>
+		</header>
+		<main>
+			<div id="target" style="--scale: 0.0; --offset: 0.0" title="Это чМоника">
+				<picture id="head">
+					<img draggable="false" src="" width="680" height="900">
+				</picture>
+				<picture id="body">
+					<img draggable="false" src="" width="680" height="900">
+				</picture>
+			</div>
+			<h1 id="splash" data-show="false"></h1>
+			<h2 id="combo" data-state="comboMultiplier" data-as="multiplier">x1</h2>
+		</main>
+		<aside>
+			<h3>
+				Добро пожаловать, <span data-state="name">Сотрудник</span>
+				<sub><a href="#" id="editname">[ред]</a></sub>
+			</h3>
+			<h3>Панель:</h3>
+			<h4><span data-state="entropy">0</span> энтропии (Э) + <span data-state="entropyIncrement" data-postfix="entropy">0</span>/сек</h4>
+			<h4><span data-state="ml">0</span> миллилитров (мл) + <span data-state="mlIncrement" data-postfix="ml">0</span>/мин</h4>
+			<h4>Вероятность кровотечения: <span data-state="dropChance" data-as="percent">0</span>%</h4>
+			<h4>Начало эксперимента: <span data-state="start" data-as="date">сейчас</span></h4>
+
+			<h3>Улучшения:</h3>
+			<ul id="upgrades"></ul>
+		</aside>
+		<footer>
+			<h3>Журнал:</h3>
+			<textarea id="console" readonly>> Инициализация...</textarea>
+		</footer>
+	</body>
+</html>

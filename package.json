@@ -1,0 +1,11 @@
+{
+  "name": "whorika-clicker",
+  "version": "0.1.0",
+  "description": "Whorika Clicker game for VK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MIEFoundation",
+  "license": "MIT"
+}
