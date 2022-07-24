@@ -35,7 +35,7 @@ class Game extends EventDispatcher {
 			target.addEventListener('click', () => {
 				const ts = performance.now()
 				if (ts - lastClick < 100) return
-				this[EventDispatcher.Dispatch]('hit')
+				this[EventDispatcher.Dispatch]('hit', true)
 				lastClick = ts
 			})
 			root.querySelector('main').addEventListener('click', e => {
@@ -53,7 +53,7 @@ class Game extends EventDispatcher {
 
 		// State elements
 		{
-			this.addEventListener('hit', () => this.state.updateDamage())
+			this.addEventListener('hit', isUser => isUser && this.state.updateDamage())
 			root.querySelector('#editname').addEventListener('click', () => {
 				const name = window.prompt('Введите имя', this.state.name)
 				if (name !== null) this.state.name = name.trim()
@@ -75,7 +75,8 @@ class Game extends EventDispatcher {
 			let spriteIndex = 0
 			const sprites = Object.keys(Sprites)
 				.filter(k => k.startsWith('hurt_'))
-			this.addEventListener('hit', () => {
+			this.addEventListener('hit', isUser => {
+				if (!isUser) return
 				spriteIndex += Math.floor(Math.random() * sprites.length)
 				spriteIndex %= sprites.length
 				this.applySprites(sprites[spriteIndex])
@@ -181,8 +182,9 @@ class Game extends EventDispatcher {
 
 			let scaleTimeout
 			const target = root.querySelector('#target')
-			this.addEventListener('hit', () => {
-				const mp = this.state.state.comboMultiplier = this.state.state.comboMultiplier + 0.02
+			this.addEventListener('hit', isUser => {
+				const mp = this.state.state.comboMultiplier + isUser ? 0.02 : 0
+				this.state.state.comboMultiplier = mp
 				target.style.setProperty(
 					'--scale',
 					1 - 0.05 * Math.min(mp, MAX_SCALING)
@@ -416,6 +418,7 @@ class Game extends EventDispatcher {
 		if (currTime - stateTime === 0) return
 		for (; stateTime < currTime; stateTime += 1000) {
 			this.state.updateIncrement()
+			this[EventDispatcher.Dispatch]('hit', false)
 		}
 		this.state.state.time = stateTime
 		this[EventDispatcher.Dispatch]('tick', performance.now())
