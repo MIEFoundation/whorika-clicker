@@ -96,6 +96,13 @@ class Game extends EventDispatcher {
 				Math.random() > 0.9 ? heavySound : hitSound
 			))
 			this.addEventListener('miss', () => this.sounds.play('miss'))
+			this.addEventListener('@upgrades_buy', (id) => {
+				this.sounds.play(`upgrade_${id}`)
+				this.sounds.play('click')
+			})
+			this.addEventListener('@upgrades_sell', (id) => {
+				this.sounds.play('click')
+			})
 		}
 
 		// Commands

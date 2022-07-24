@@ -64,6 +64,7 @@ export default class StateWrapper extends EventDispatcher {
 			}
 		}
 		this[EventDispatcher.Dispatch]('upgradeLevels', this.state.upgradeLevels)
+		this[EventDispatcher.Dispatch]('@upgrades_buy', id, amount)
 		return true
 	}
 
@@ -83,6 +84,7 @@ export default class StateWrapper extends EventDispatcher {
 			}
 		}
 		this[EventDispatcher.Dispatch]('upgradeLevels', this.state.upgradeLevels)
+		this[EventDispatcher.Dispatch]('@upgrades_sell', id, amount)
 		return true
 	}
 
