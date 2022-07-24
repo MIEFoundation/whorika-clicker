@@ -72,7 +72,6 @@ export default {
 		validate: v => Object.entries(v).every(([name, level]) => {
 			if (!(name in UpgradeDefinitions)) return false
 			const { max = 1, condition = null } = UpgradeDefinitions[name]
-			if (condition && !condition({ upgradeLevels: v })) return false
 			return level > 0 && level <= max
 		}),
 		default: () => ({}),
