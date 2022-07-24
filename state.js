@@ -18,6 +18,10 @@ export default class StateWrapper extends EventDispatcher {
 		this.state.totalDamage += damage
 	}
 
+	hasIncrement() {
+		return this.state.damageIncrement > 0
+	}
+
 	updateIncrement() {
 		this.state.totalDamage += this.state.damageIncrement
 		this.state.entropy += this.state.entropyIncrement

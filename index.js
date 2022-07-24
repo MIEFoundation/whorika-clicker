@@ -425,6 +425,8 @@ class Game extends EventDispatcher {
 		if (currTime - stateTime === 0) return
 		for (; stateTime < currTime; stateTime += 1000) {
 			this.state.updateIncrement()
+		}
+		if (this.state.hasIncrement()) {
 			this[EventDispatcher.Dispatch]('hit', false)
 		}
 		this.state.state.time = stateTime
