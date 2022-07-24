@@ -86,8 +86,8 @@ class Game extends EventDispatcher {
 
 		// Sound
 		{
-			let hitSound = 'stage_1'
-			let heavySound = 'stage_1h'
+			let hitSound = 'stage_0'
+			let heavySound = 'stage_0h'
 			this.state.addEventListener('stage', (stage) => {
 				if (`stage_${stage}` in Sounds) hitSound = `stage_${stage}`
 				if (`stage_${stage}h` in Sounds) heavySound = `stage_${stage}h`
