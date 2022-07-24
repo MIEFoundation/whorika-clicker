@@ -1,11 +1,8 @@
 {
   "name": "whorika-clicker",
-  "version": "0.1.0",
-  "description": "Whorika Clicker game for VK",
+  "version": "0.2.0",
+  "description": "Beat the 💩 out of Monika!",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "MIEFoundation",
   "license": "MIT"
 }
