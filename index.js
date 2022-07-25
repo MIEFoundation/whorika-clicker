@@ -423,11 +423,11 @@ class Game extends EventDispatcher {
 		const currTime = Date.now() - (Date.now() % 1000)
 		let stateTime = this.state.state.time
 		if (currTime - stateTime === 0) return
-		for (; stateTime < currTime; stateTime += 1000) {
-			this.state.updateIncrement()
-		}
-		if (this.state.hasIncrement()) {
+		if (this.state.hasIncrement() && stateTime < currTime) {
 			this[EventDispatcher.Dispatch]('hit', false)
+			for (; stateTime < currTime; stateTime += 1000) {
+				this.state.updateIncrement()
+			}
 		}
 		this.state.state.time = stateTime
 		this[EventDispatcher.Dispatch]('tick', performance.now())
