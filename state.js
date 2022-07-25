@@ -16,16 +16,14 @@ export default class StateWrapper extends EventDispatcher {
 		this.state.entropy += damage
 		this.state.ml += Math.round((Math.random() + 0.5) * this.state.mlDropChance * damage)
 		this.state.totalDamage += damage
-	}
-
-	hasIncrement() {
-		return this.state.damageIncrement > 0
+		this[EventDispatcher.Dispatch]('@damage')
 	}
 
 	updateIncrement() {
 		this.state.totalDamage += this.state.damageIncrement
 		this.state.entropy += this.state.entropyIncrement
 		this.state.ml += this.state.mlIncrement
+		this[EventDispatcher.Dispatch]('@increment')
 	}
 
 	getAvailable() {

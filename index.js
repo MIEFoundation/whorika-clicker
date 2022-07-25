@@ -49,6 +49,10 @@ class Game extends EventDispatcher {
 				this[EventDispatcher.Dispatch]('comboReset', ts - lastClick)
 				lastClick = 0
 			})
+
+			this.state.addEventListener('@increment', () => {
+				this[EventDispatcher.Dispatch]('hit', false)
+			})
 		}
 
 		// State elements
@@ -420,14 +424,11 @@ class Game extends EventDispatcher {
 	}
 
 	tick () {
-		const currTime = Date.now() - (Date.now() % 1000)
+		const currTime = Date.now()
 		let stateTime = this.state.state.time
-		if (currTime - stateTime === 0) return
-		if (this.state.hasIncrement() && stateTime < currTime) {
-			this[EventDispatcher.Dispatch]('hit', false)
-			for (; stateTime < currTime; stateTime += 1000) {
-				this.state.updateIncrement()
-			}
+		if ((currTime - stateTime) < 1000) return
+		for (; (currTime - stateTime) >= 1000; stateTime += 1000) {
+			this.state.updateIncrement()
 		}
 		this.state.state.time = stateTime
 		this[EventDispatcher.Dispatch]('tick', performance.now())
