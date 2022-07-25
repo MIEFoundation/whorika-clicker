@@ -100,7 +100,7 @@ export default {
 		condition: state => state.upgradeLevels.knife,
 		mutate: state => (
 			state.baseDamage = 80,
-			state.mlDropChance = 0.4,
+			state.mlDropChance = 0.3,
 			state
 		),
 	},
@@ -141,7 +141,7 @@ export default {
 		condition: state => state.upgradeLevels.pistol,
 		mutate: state => (
 			state.baseDamage = 500,
-			state.mlDropChance = 0.4,
+			state.mlDropChance = 0.3,
 			state
 		),
 	},
@@ -172,7 +172,7 @@ export default {
 		condition: state => state.upgradeLevels.smg,
 		mutate: state => (
 			state.baseDamage = 800,
-			state.mlDropChance = 0.6,
+			state.mlDropChance = 0.4,
 			state
 		),
 	},
@@ -183,7 +183,7 @@ export default {
 		condition: state => state.upgradeLevels.machine_gun,
 		mutate: state => (
 			state.baseDamage = 1_000,
-			state.mlDropChance = 0.8,
+			state.mlDropChance = 0.5,
 			state
 		),
 	},
@@ -194,7 +194,7 @@ export default {
 		condition: state => state.upgradeLevels.shotgun,
 		mutate: state => (
 			state.baseDamage = 5_000,
-			state.mlDropChance = 1,
+			state.mlDropChance = 0.8,
 			state
 		),
 	},
