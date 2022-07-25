@@ -18,7 +18,7 @@ export default {
 	castet: {
 		name: 'Кастет',
 		stage: 0,
-		costEntropy: 500,
+		costEntropy: 100,
 		mutate: state => (
 			state.baseDamage = 5,
 			state.mlDropChance = 0.005,
@@ -28,7 +28,7 @@ export default {
 	bat: {
 		name: 'Деревянная бита',
 		stage: 0,
-		costEntropy: 2_000,
+		costEntropy: 1_000,
 		condition: state => state.upgradeLevels.castet,
 		mutate: state => (
 			state.baseDamage = 8,
@@ -39,7 +39,7 @@ export default {
 	hammer: {
 		name: 'Молоток',
 		stage: 0,
-		costEntropy: 6_000,
+		costEntropy: 3_000,
 		condition: state => state.upgradeLevels.bat,
 		mutate: state => (
 			state.baseDamage = 20,
@@ -50,7 +50,7 @@ export default {
 	hammer_big: {
 		name: 'Железный молот',
 		stage: 0,
-		costEntropy: 10_000,
+		costEntropy: 8_000,
 		condition: state => state.upgradeLevels.hammer,
 		mutate: state => (
 			state.baseDamage = 30,
@@ -61,7 +61,7 @@ export default {
 	analysis: {
 		name: 'Анализ крови',
 		stage: 0,
-		costEntropy: 50_000,
+		costEntropy: 20_000,
 		costMl: 100,
 		condition: state => state.upgradeLevels.bat && state.ml > 0,
 		mutate: state => (
@@ -73,7 +73,7 @@ export default {
 	knife: {
 		name: 'Нож',
 		stage: 1,
-		costEntropy: 40_000,
+		costEntropy: 10_000,
 		condition: state => state.upgradeLevels.analysis,
 		mutate: state => (
 			state.baseDamage = 50,
@@ -96,7 +96,7 @@ export default {
 	larger_knife: {
 		name: 'Длинный нож',
 		stage: 1,
-		costEntropy: 50_000,
+		costEntropy: 30_000,
 		condition: state => state.upgradeLevels.knife,
 		mutate: state => (
 			state.baseDamage = 80,
@@ -109,6 +109,7 @@ export default {
 		stage: 1,
 		max: 10,
 		sellable: true,
+		condition: state => state.upgradeLevels.knife,
 		costMl: 5_000,
 		mutate: state => (
 			state.damageIncrement += 100,
@@ -151,7 +152,7 @@ export default {
 		max: 10,
 		sellable: true,
 		costMl: 100_000,
-		condition: state => state.upgradeLevels.disposable,
+		condition: state => state.upgradeLevels.disposable && state.upgradeLevels.smg,
 		mutate: state => (
 			state.damageIncrement += 500,
 			state.entropyIncrement += 200,
