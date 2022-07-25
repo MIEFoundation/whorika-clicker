@@ -165,19 +165,10 @@ class Game extends EventDispatcher {
 
 		// Upgrades
 		{
-			let cache = this.state.getAvailable()
 			this.upgrades = root.querySelector('#upgrades')
-			this.state.addEventListener('entropy', () => {
-				if (JSON.stringify(this.state.getAvailable()) !== JSON.stringify(cache)) {
-					cache = this.state.getAvailable()
-					this.updateUpgrades(cache)
-				}
-			})
-			this.state.addEventListener('upgradeLevels', () => {
-				cache = this.state.getAvailable()
-				this.updateUpgrades(cache)
-			})
-			this.updateUpgrades(cache)
+			this.state.addEventListener('@damage', () => this.updateUpgrades())
+			this.state.addEventListener('upgradeLevels', () => this.updateUpgrades())
+			this.updateUpgrades()
 		}
 
 		// Story text
@@ -259,7 +250,7 @@ class Game extends EventDispatcher {
 				// Stage changed faster than it should be
 				this.storyTextGoing = false
 				return this.storyText()
-		}
+			}
 		}
 		this.storyTextGoing = false
 	}
@@ -363,7 +354,8 @@ class Game extends EventDispatcher {
 		return button
 	}
 
-	updateUpgrades(upgrades) {
+	updateUpgrades() {
+		const upgrades = this.state.getAvailable()
 		const { upgradeLevels } = this.state.state
 		// Stage 1. Update
 		for (let i = 0; i < this.upgrades.children.length; i++) {
@@ -383,7 +375,9 @@ class Game extends EventDispatcher {
 					continue
 				}
 				if (!button instanceof HTMLButtonElement) continue
-				button.disabled = +button.dataset.amount > upgrades[id]
+				button.disabled = +button.dataset.amount > 0
+					? +button.dataset.amount > upgrades[id]
+					: this.state.state.upgradeLevels[id] >= -button.dataset.amount
 			}
 			// Stage 2. Delete
 			delete upgrades[id]
