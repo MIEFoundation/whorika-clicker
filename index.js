@@ -181,6 +181,7 @@ class Game extends EventDispatcher {
 		}
 
 		// Story text
+		this.storyTextGoing = false
 		this.state.addEventListener('stage', (stage) => this.storyText(stage))
 
 		// Random text
@@ -249,10 +250,18 @@ class Game extends EventDispatcher {
 	}
 
 	async storyText (stage = this.state.state.stage) {
+		if (!(stage in NextStageMessages) || this.storyTextGoing) return
+		this.storyTextGoing = true
 		for (const message of NextStageMessages[stage]) {
 			this.console.message(message.replace(/{(\w+)}/gi, (_, name) => this.state.state[name]))
 			await this.waitTicks(5000)
+			if (stage !== this.state.state.stage) {
+				// Stage changed faster than it should be
+				this.storyTextGoing = false
+				return this.storyText()
 		}
+		}
+		this.storyTextGoing = false
 	}
 
 	applySprites (state) {
