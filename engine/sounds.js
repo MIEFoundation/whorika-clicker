@@ -30,4 +30,18 @@ export default class GameSounds {
 		target.pause()
 		target.currentTime = 0
 	}
+
+	playLoop (id) {
+		if (!(id in this.audio)) return
+		const target = this.audio[id]
+		target.currentTime = 0
+		target.play()
+		target.loop = true
+	}
+
+	stopAll () {
+		for (const id in this.audio) {
+			this.stop(id)
+		}
+	}
 }

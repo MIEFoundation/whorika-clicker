@@ -16,6 +16,7 @@ Used sounds licensed under Creative Commons:
 
 - [click.ogg](https://freesound.org/people/NenadSimic/sounds/171697/) by [NenadSimic](https://freesound.org/people/NenadSimic/)
 - [crush.ogg](https://freesound.org/people/satanicupsman/sounds/144015/) by [satanicupsman](https://freesound.org/people/satanicupsman/)
+- [debug.ogg](https://freesound.org/people/suonho/sounds/3158/) by [suonho](https://freesound.org/people/suonho/)
 - [whipping.ogg](https://freesound.org/people/DWOBoyle/sounds/144266/) by [DWOBoyle](https://freesound.org/people/DWOBoyle/)
 - [impact.ogg](https://freesound.org/people/original_sound/sounds/376818/) by [original_sound](https://freesound.org/people/original_sound/)
 - [punch.ogg](https://freesound.org/people/Huminaatio/sounds/390462/) by [Huminaatio](https://freesound.org/people/Huminaatio/)
