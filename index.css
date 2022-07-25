@@ -145,4 +145,6 @@ footer>textarea {
 	background: #4f5b62;
 	border: 1px solid #000a12;
 	color: white;
+	cursor: context-menu;
+	cursor: pointer;
 }
