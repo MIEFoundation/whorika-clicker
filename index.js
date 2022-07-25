@@ -443,13 +443,10 @@ class Game extends EventDispatcher {
 	}
 
 	tick () {
-		const currTime = Date.now()
-		let stateTime = this.state.state.time
-		if ((currTime - stateTime) < 1000) return
-		for (; (currTime - stateTime) >= 1000; stateTime += 1000) {
-			this.state.updateIncrement()
-		}
-		this.state.state.time = stateTime
+		const ts = Math.floor((Date.now() - this.state.state.time) / 1000)
+		if (!ts) return
+		this.state.updateIncrement(ts)
+		this.state.state.time = Date.now()
 		this[EventDispatcher.Dispatch]('tick', performance.now())
 	}
 }
