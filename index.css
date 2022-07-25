@@ -52,6 +52,7 @@ header span {
 
 aside {
 	grid-area: aside;
+	overflow-y: scroll;
 	color: #fafafa;
 	background: #263238;
 	padding: 1em;
