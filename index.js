@@ -186,8 +186,9 @@ class Game extends EventDispatcher {
 			let scaleTimeout
 			const target = root.querySelector('#target')
 			this.addEventListener('hit', isUser => {
-				const mp = this.state.state.comboMultiplier + isUser ? 0.02 : 0
-				this.state.state.comboMultiplier = mp
+				const mp = this.state.state.comboMultiplier
+				if (isUser) this.state.state.comboMultiplier += 0.02
+
 				target.style.setProperty(
 					'--scale',
 					1 - 0.05 * Math.min(mp, MAX_SCALING)
