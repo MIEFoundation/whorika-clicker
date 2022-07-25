@@ -378,7 +378,7 @@ class Game extends EventDispatcher {
 				if (!button instanceof HTMLButtonElement) continue
 				button.disabled = +button.dataset.amount > 0
 					? +button.dataset.amount > upgrades[id]
-					: this.state.state.upgradeLevels[id] >= -button.dataset.amount
+					: -button.dataset.amount > this.state.state.upgradeLevels[id]
 			}
 			// Stage 2. Delete
 			delete upgrades[id]
