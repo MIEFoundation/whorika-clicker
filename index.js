@@ -100,12 +100,27 @@ class Game extends EventDispatcher {
 				Math.random() > 0.9 ? heavySound : hitSound
 			))
 			this.addEventListener('miss', () => this.sounds.play('miss'))
-			this.addEventListener('@upgrades_buy', (id) => {
+			this.state.addEventListener('@upgrades_buy', (id) => {
 				this.sounds.play(`upgrade_${id}`)
 				this.sounds.play('click')
 			})
-			this.addEventListener('@upgrades_sell', (id) => {
+			this.state.addEventListener('@upgrades_sell', (id) => {
 				this.sounds.play('click')
+			})
+			let bgmPlaying = false
+			try {
+				this.sounds.playLoop('bgm' + Math.floor(Math.random() * 4))
+				bgmPlaying = true
+			} catch (e) {
+				this.console.error(e)
+			}
+			root.querySelector('.audio').addEventListener('click', () => {
+				bgmPlaying = !bgmPlaying
+				if (bgmPlaying) {
+					this.sounds.playLoop('bgm' + Math.floor(Math.random() * 4))
+				} else {
+					this.sounds.stopAll()
+				}
 			})
 		}
 

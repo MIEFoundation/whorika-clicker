@@ -11,8 +11,9 @@ span[data-state] {
 	overflow-wrap: break-word;
 }
 
-audio {
-	height: 2em;
+.audio {
+	cursor: pointer;
+	font-size: 2em;
 }
 
 body {

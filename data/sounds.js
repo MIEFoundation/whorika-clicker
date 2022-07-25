@@ -7,8 +7,8 @@ export default {
 	click: './assets/sounds/click.ogg',
 	upgrade_slap: './assets/sounds/slap.ogg',
 	upgrade_knee: './assets/sounds/crush.ogg',
+	bgm0: './assets/music/hum.ogg',
 	bgm1: './assets/music/monika.ogg',
 	bgm2: './assets/music/gachimuchi.ogg',
 	bgm3: './assets/music/bomba.ogg',
-	hum: './assets/music/hum.ogg',
 }
