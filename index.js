@@ -460,7 +460,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	idleCallback()
 	setInterval(() => game.save(), 60 * 1000)
-	window.addEventListener('beforeunload', () => game.save())
+	window.addEventListener('pagehide', () => game.save())
+	window.addEventListener('visibilitychange', () => game.save())
 })
 
 console.log(`Привет!
@@ -472,7 +473,7 @@ console.log(`Привет!
 > game.isDebug = true // Включить режим отладки
 > game.load(1) // Загрузить слот 1
 > game.save(1) // Сохранить слот 1
-> game.state.ml += 1e10 // Добавить игровой валюты
+> game.state.state.ml += 1e10 // Добавить игровой валюты
 > game.targetMultiplier = 20 // Поставить комбо х20
 > game.clear(0) // Очистить слот 0 (основной)
 `)
