@@ -8,12 +8,13 @@ This game does not need build scripts - just clone and host it yourself!
 
 ## License
 
-This game includes assets from *Doki Doki Literature Club!*, owned by Team Salvato. Please remove them in your copy of this game if you want to re-license it.
+This game includes character assets from *Doki Doki Literature Club!*, owned by Team Salvato. Please remove them in your copy of this game if you want to re-license it.
 
 Code itself is dedicated to the public domain, no rights reserved.
 
-Used sounds licensed under Creative Commons:
+Used assets licensed under Creative Commons:
 
+- [wall.jpg](https://www.flickr.com/photos/25797459@N06/21517201620) by [zaphad1](https://www.flickr.com/photos/25797459@N06/)
 - [click.ogg](https://freesound.org/people/NenadSimic/sounds/171697/) by [NenadSimic](https://freesound.org/people/NenadSimic/)
 - [crush.ogg](https://freesound.org/people/satanicupsman/sounds/144015/) by [satanicupsman](https://freesound.org/people/satanicupsman/)
 - [debug.ogg](https://freesound.org/people/suonho/sounds/3158/) by [suonho](https://freesound.org/people/suonho/)

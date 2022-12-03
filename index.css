@@ -21,7 +21,9 @@ body {
 	margin: 0;
 	width: 100vw;
 	height: 100vh;
-	background: #d9d0d5;
+	background: url("assets/wall.jpg");
+	background: url("assets/wall.webp");
+	background-color: #fdafda;
 	grid-template-columns: 0.8fr 1.4fr 0.8fr;
 	grid-template-rows: 0.2fr 2fr 0.8fr;
 	gap: 0;
@@ -48,6 +50,10 @@ header h2 {
 
 header span {
 	color: #000000;
+}
+
+article, footer {
+	background: #fffa;
 }
 
 aside {
