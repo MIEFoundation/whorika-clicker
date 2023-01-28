@@ -1,0 +1,6 @@
+{
+	"version": 1,
+	"include": ["/scoreboard/*"],
+	"exclude": ["/assets/*", "/data/*", "/engine/*"]
+ }
+ 

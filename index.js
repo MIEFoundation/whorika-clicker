@@ -451,6 +451,75 @@ class Game extends EventDispatcher {
 	}
 }
 
+async function getScoreboardResource () {
+	let id = localStorage.getItem('#uri')
+	if (id) return id
+	const params = new URLSearchParams(window.location.search)
+	if (!params.has('api_url') && !params.get('api_url').startsWith('https://api.vk.com/api')) {
+		return
+	}
+	const res = await fetch(`/scoreboard`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			id: `id${params.get('viewer_id')}@vk.com`,
+			namespace: `club${params.get('group_id')}@vk.com`
+		})
+	})
+	if (!res.ok) {
+		console.error('Auth error:', res.status, res.statusText)
+		return null
+	}
+	const uri = res.headers.get('Location')
+	localStorage.setItem('#uri', uri)
+	return uri
+}
+
+async function updateScoreboard () {
+	const scoreboard = await fetch('/scoreboard', { cache: 'no-cache' })
+	const items = []
+	for (const [name, score, url] of await scoreboard.json()) {
+		const li = document.createElement('li')
+		if (url) {
+			const a = document.createElement('a')
+			a.href = url
+			a.target = '_blank'
+			a.innerText = name
+			li.appendChild(a)
+		} else li.appendChild(document.createTextNode(name))
+		li.appendChild(document.createTextNode(`: ${game.formatter.format(score, 'number')}`))
+		items.push(li)
+	}
+	const el = document.querySelector('#scoreboard')
+	el.replaceChildren(...items)
+	const url = await getScoreboardResource()
+	if (!url) return
+	await fetch(url, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(game.state.toJSON())
+	})
+	const resource = await fetch(url, { cache: 'no-cache' })
+	if (!resource.ok) return
+	const { index, value } = await resource.json()
+	if (index >= el.childElementCount.length) {
+		const li = document.createElement('li')
+		li.value = index + 1
+		const [name, score, url] = value
+		if (url) {
+			const a = document.createElement('a')
+			a.href = url
+			a.target = '_blank'
+			a.innerText = name
+			li.appendChild(a)
+		} else li.appendChild(document.createTextNode(name))
+		li.appendChild(document.createTextNode(`: ${game.formatter.format(score, 'number')}`))
+		el.appendChild(li)
+	}
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 	const game = globalThis.game = new Game
 	game.load()
@@ -459,9 +528,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		requestIdleCallback(idleCallback)
 	}
 	idleCallback()
-	setInterval(() => game.save(), 60 * 1000)
+	setInterval(() => (game.save(), updateScoreboard()), 60 * 1000)
 	window.addEventListener('pagehide', () => game.save())
 	window.addEventListener('visibilitychange', () => game.save())
+	updateScoreboard()
 })
 
 console.log(`Привет!
