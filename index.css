@@ -32,6 +32,10 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, 'Noto Sans Armenian', 'Noto Sans Bengali', 'Noto Sans Cherokee', 'Noto Sans Devanagari', 'Noto Sans Ethiopic', 'Noto Sans Georgian', 'Noto Sans Hebrew', 'Noto Sans Kannada', 'Noto Sans Khmer', 'Noto Sans Lao', 'Noto Sans Osmanya', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Thai', sans-serif;
 }
 
+header, footer, main #splash[data-show="true"] {
+	z-index: 2;
+}
+
 header {
 	display: flex;
 	color: #ffffff;
@@ -154,4 +158,24 @@ footer>textarea {
 	color: white;
 	cursor: context-menu;
 	cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 3fr 0.8fr;
+    grid-template-areas: "header""main""journal";
+  }
+	main #combo {
+		top: 6vh;
+		bottom: initial !important;
+	}
+	aside {
+		position: absolute;
+		top: 100vh;
+		width: calc(100vw - 2em);
+		overflow-y: visible;
+		border: none;
+		z-index: 2;
+	}
 }
