@@ -478,6 +478,7 @@ async function getScoreboardResource () {
 }
 
 async function updateScoreboard () {
+	if (!localStorage.getItem('#scoreboardtest')) return
 	const scoreboard = await fetch('/scoreboard', { cache: 'no-cache' })
 	const items = []
 	for (const [name, score, url] of await scoreboard.json()) {
